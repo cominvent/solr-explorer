@@ -1,0 +1,76 @@
+<!--
+  ~ Copyright 2011 SearchWorkings.org
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<solr-explorer xmlns="http://lucene.apache.org/solr/schema/solr/explorer-1.0"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://lucene.apache.org/solr/schema/solr/explorer-1.0 http://lucene.apache.org/solr/schema/solr/explorer-1.0.xsd">
+
+    <help-url>http://search.jteam.nl/help</help-url>
+
+    <solr-core name="Products">
+
+        <debug query="true"/>
+
+        <server baseUrl="http://localhost:8983/solr">
+            <select-uri>/select</select-uri>
+        </server>
+
+        <search>
+            <default-query>*:*</default-query>
+        </search>
+
+        <list-view>
+            <title-field default="[unknown]">name</title-field>
+            <summary-field default="No special features" maxLength="500">features</summary-field>
+        </list-view>
+
+        <terms uri="/terms">
+            <field-names>cat</field-names>
+        </terms>
+
+        <spellcheck enabled="true">
+            <dictionary>default</dictionary>
+            <count>5</count>
+            <onlyMorePopular>true</onlyMorePopular>
+        </spellcheck>
+
+        <highlighting/>
+
+        <facets>
+
+            <field-facet name="Category" mutuallyExclusive="false">
+                <field>cat</field>
+                <sort>count</sort>
+                <min-count>1</min-count>
+            </field-facet>
+
+            <field-facet name="Popularity" mutuallyExclusive="true">
+                <field>popularity</field>
+                <sort>count</sort>
+                <min-count>1</min-count>
+            </field-facet>
+
+            <field-facet name="In Stock" mutuallyExclusive="true">
+                <field>inStock</field>
+                <min-count>0</min-count>
+            </field-facet>
+
+        </facets>
+
+    </solr-core>
+
+
+</solr-explorer>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="explorer-for-apache-solr" default="build" basedir=".">
+
+    <property name="project.version" value="0.9.0"/>
+
+    <property name="gwt.version" value="2.0.3"/>
+    <property name="commons.httpclient.version" value="3.1"/>
+
+    <path id="project.class.path">
+        <pathelement location="target/war/WEB-INF/classes"/>
+        <fileset dir="lib" includes="**/*.jar"/>
+    </path>
+
+    <!--<target name="check-files" depends="proxy.setup">-->
+    <target name="check-files">
+        <available file="lib/build/gwt-user-${gwt.version}.jar" property="gwt.user.exists"/>
+        <available file="lib/build/gwt-dev-${gwt.version}.jar" property="gwt.dev.exists"/>
+    </target>
+
+    <target name="get-gwt-user" depends="check-files" unless="gwt.user.exists">
+        <get src="http://mirrors.ibiblio.org/pub/mirrors/maven2/com/google/gwt/gwt-user/${gwt.version}/gwt-user-${gwt.version}.jar"
+             dest="lib/build/gwt-user-${gwt.version}.jar"
+             verbose="true"/>
+    </target>
+
+    <target name="get-gwt-dev" depends="check-files" unless="gwt.dev.exists">
+        <get src="http://mirrors.ibiblio.org/pub/mirrors/maven2/com/google/gwt/gwt-dev/2.0.3/gwt-dev-${gwt.version}.jar"
+             dest="lib/build/gwt-dev-${gwt.version}.jar"
+             verbose="true"/>
+    </target>
+
+    <target name="get-missing-jars" depends="get-gwt-user,get-gwt-dev"
+            description="Downloads required and still missing jars from the net">
+    </target>
+
+    <target name="init" depends="clean,get-missing-jars"
+            description="prepares the war directory where the output will be written to">
+        <mkdir dir="target/war"/>
+        <copy todir="target/war">
+            <fileset dir="src/main/webapp" includes="**/*"/>
+        </copy>
+        <mkdir dir="target/war/WEB-INF/lib"/>
+        <copy todir="target/war/WEB-INF/lib">
+            <fileset dir="lib/runtime" includes="**/*"/>
+            <fileset dir="lib/compile" includes="**/*"/>
+        </copy>
+    </target>
+
+    <target name="javac" depends="clean" description="Compile java source">
+        <mkdir dir="target/war/WEB-INF/classes"/>
+        <javac srcdir="src" includes="**" encoding="utf-8"
+               destdir="target/war/WEB-INF/classes"
+               source="1.5" target="1.5" nowarn="true"
+               debug="true" debuglevel="lines,vars,source">
+            <classpath refid="project.class.path"/>
+        </javac>
+        <copy todir="target/war/WEB-INF/classes">
+            <fileset dir="src/main/java" excludes="**/*.java"/>
+        </copy>
+        <copy todir="target/war/WEB-INF/lib">
+            <fileset dir="lib/compile" includes="**/*.jar"/>
+            <fileset dir="lib/runtime" includes="**/*.jar"/>
+        </copy>
+    </target>
+
+    <target name="gwtc" depends="init,javac" description="GWT compile to JavaScript">
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+            <classpath>
+                <pathelement location="src/main/java"/>
+                <path refid="project.class.path"/>
+            </classpath>
+            <jvmarg value="-Xmx512M"/>
+            <arg line='-war target/war -gen target/gen org.apache.solr.explorer.SolrExplorer'/>
+        </java>
+    </target>
+
+    <target name="dist" depends="build,dist-only">
+    </target>
+
+    <target name="dist-only" description="builds the distribution artifacts">
+		<delete dir="dist" failonerror="false"/>
+        <mkdir dir="dist"/>
+
+        <war destfile="dist/explorer-for-apache-solr-${project.version}.war" basedir="target/war" webxml="target/war/WEB-INF/web.xml"
+             includes="WEB-INF/classes/**/server/**,explorer/**,*.html,*.xml,style/**,WEB-INF/lib/*"/>
+        <copy file="lib/build/winstone-0.9.10.jar" tofile="dist/explorer-for-apache-solr-${project.version}.jar"/>
+        <copy file="dist/explorer-for-apache-solr-${project.version}.war" tofile="dist/embedded.war"/>
+        <jar destfile="dist/explorer-for-apache-solr-${project.version}.jar" update="true">
+            <fileset dir="dist" includes="embedded.war"/>
+        </jar>
+        <delete file="dist/embedded.war"/>
+        <copy file="target/war/cores-config.xml" todir="dist"/>
+
+        <!-- Generating the distro zip package -->
+        <mkdir dir="dist/tmp"/>
+        <copydir src="build" dest="dist/tmp"/>
+        <mkdir dir="dist/tmp/src"/>
+        <copydir src="src" dest="dist/tmp/src"/>
+        <mkdir dir="dist/tmp/lib"/>
+        <copydir src="lib" dest="dist/tmp/lib" excludes="**/*/gwt-dev-*.jar,**/*/gwt-user-*.jar,"/>
+        <copy file="build.xml" todir="dist/tmp"/>
+        <copy file="dist/explorer-for-apache-solr-${project.version}.jar" tofile="dist/tmp/explorer-for-apache-solr-${project.version}.jar"/>
+        <replace file="dist/tmp/explorer.sh" token="@project.version@" value="${project.version}"/>
+        <copy file="dist/cores-config.xml" tofile="dist/tmp/cores-config.xml"/>
+        <tar destfile="dist/explorer-for-apache-solr-${project.version}.tar.gz" basedir="dist/tmp" compression="gzip"/>
+        <!--<zip destfile="dist/explorer-for-apache-solr-${project.version}.zip" basedir="dist/tmp"/>-->
+        <!--<tar destfile="dist/explorer-for-apache-solr-${project.version}.tar.gz" compression="gzip">-->
+            <!--<zipfileset src="dist/explorer-for-apache-solr-${project.version}.zip"/>-->
+        <!--</tar>-->
+        <!--<delete file="dist/explorer-for-apache-solr-${project.version}.zip"/>-->
+        <delete dir="dist/tmp"/>
+    </target>
+
+
+    <target name="build" depends="gwtc" description="Build this project"/>
+
+    <target name="clean" description="Deletes the target and dist directories">
+        <delete dir="target" failonerror="false"/>
+        <delete dir="dist" failonerror="false"/>
+    </target>
+
+    <target name="clean-all" depends="clean" description="Deletes target and dist directories and the gwt libraries in the lib">
+        <delete file="lib/build/gwt-user-${gwt.version}.jar"/>
+        <delete file="lib/build/gwt-dev-${gwt.version}.jar"/>
+    </target>
+
+</project>

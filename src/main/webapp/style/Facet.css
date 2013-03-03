@@ -1,0 +1,145 @@
+/*
+ * Copyright 2011 SearchWorkings.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton .FieldsButton {*/
+    /*background: url(images/fields.gif) no-repeat scroll 0 0;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton-down .FieldsButton {*/
+    /*background: url(images/fields-down.gif) no-repeat scroll 0 0;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton .QueriesButton {*/
+    /*background: url(images/queries.gif) no-repeat scroll 0 0;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton-down .QueriesButton {*/
+    /*background: url(images/queries-down.gif) no-repeat scroll 0 0 !important;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton .DatesButton {*/
+    /*background: url(images/dates.gif) no-repeat scroll 0 0;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton-down .DatesButton {*/
+    /*background: url(images/dates-down.gif) no-repeat scroll 0 0 !important;*/
+/*}*/
+
+.DrawerButton-left {
+    height: 100px;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.DrawerButton-dateFacets {
+    background: url(images/facet/dates.gif) no-repeat scroll 0 0;
+}
+
+.DrawerButton-dateFacets-down, .DrawerButton-dateFacets-up-hovering, .DrawerButton-dateFacets-down-hovering {
+    background: url(images/facet/dates-down.gif) no-repeat scroll 0 0 !important;
+}
+
+.DrawerButton-fieldFacets {
+    background: url(images/facet/fields.gif) no-repeat scroll 0 0;
+}
+
+.DrawerButton-fieldFacets-down, .DrawerButton-fieldFacets-up-hovering, .DrawerButton-fieldFacets-down-hovering {
+    background: url(images/facet/fields-down.gif) no-repeat scroll 0 0 !important;
+}
+
+.DrawerButton-queryFacets {
+    background: url(images/facet/queries.gif) no-repeat scroll 0 0;
+}
+
+.DrawerButton-queryFacets-down, .DrawerButton-queryFacets-up-hovering, .DrawerButton-queryFacets-down-hovering {
+    background: url(images/facet/queries-down.gif) no-repeat scroll 0 0 !important;
+}
+
+
+/*===============================================  FieldFacetPane Styels =============================================*/
+
+.FieldFacetPane {
+}
+
+.FieldFacetPane .FieldFacetBox {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.FieldFacetPane .FieldFacetBox .Header .TitleLabel {
+    padding-left: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #00a8ff;
+}
+
+.FieldFacetPane .FieldFacetBox .Header .CountLabel {
+    font-size: 11px;
+    font-weight: normal;
+    font-style: italic;
+    color: gray;
+}
+
+.FieldFacetPane .FieldFacetBox .header {
+    text-decoration: none;
+}
+
+.FieldFacetPane .FieldFacetBox .header:hover .TitleLabel {
+    color: blue !important;
+}
+
+.FieldFacetPane .FieldFacetBox .content {
+    border: none;
+    padding-top: 4px;
+    padding-left: 8px;
+}
+
+.FieldFacetPane .FieldFacetBox .FacetEntry {
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.FieldFacetPane .FieldFacetBox .FacetEntry-hover {
+    color: blue;
+    font-weight: bold;
+}
+
+
+/*===============================================  QueryFacetPane Styels =============================================*/
+
+.QueryFacetPane {
+}
+
+.QueryFacetPane .QueryFacetBox {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.QueryFacetPane .QueryFacetBox .Label {
+    color: #00a8ff;
+    padding-left: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.QueryFacetPane .QueryFacetBox .Label-hover {
+    color: blue;
+}
+
+.QueryFacetPane .QueryFacetBox .Count {
+    padding-left: 10px;
+}

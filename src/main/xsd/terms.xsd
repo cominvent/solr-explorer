@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 SearchWorkings.org
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:tns="http://lucene.apache.org/solr/schema/solr/explorer-1.0"
+           elementFormDefault="qualified"
+           targetNamespace="http://lucene.apache.org/solr/schema/solr/explorer-1.0">
+
+    <xs:element name="terms">
+        <xs:annotation>
+            <xs:documentation>
+                Activates the terms plugin for the explorer which provides auto-suggestions for the query box based
+                on specific term fields.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="field-names" type="xs:string" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            A comma-separated list of field names to be used for the auto-suggestion.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="lower-bound" type="xs:string" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The lower bound (word) of the auto suggest
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="include" type="xs:boolean" use="optional" default="true">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Determines whether the lower bound should be included/excluded
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="upper-bound" type="xs:string" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The upper bound (word) of the auto suggest
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="include" type="xs:boolean" use="optional" default="true">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Determines whether the upper bound should be included/excluded
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="min-count" type="xs:int" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The minimum doc frequency to return in order to be included. That is, the minimum number
+                            of accurances of a term among all documents in order for the term to be included in the
+                            suggestion. It makes sense to define this min count as you probably want to retern more
+                            frequent terms (if a term only occures in one document, it's not really a good suggestion).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="max-count" type="xs:int" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The maximum doc frequency to return in order to be included. That is, the maximum number
+                            of accurances of a term among all documents in order for the term to be included in the
+                            suggestion. It makes sense to provide this limit in order to exclude too frequent terms
+                            (for example, if the index contains stop words)
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="limit" type="xs:int" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            he maximum number of terms to return for suggestion.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="raw" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            If true, return the raw characters of the indexed term, regardless of if it is human
+                            readable. For instance, the indexed form of numeric numbers is not human readable
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="sort" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            If "count", sorts the terms by the term frequency (highest count first). If "index", returns
+                            the terms in index order. Default is to sort by count.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="count"/>
+                            <xs:enumeration value="index"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="enabled" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Sets whether the auto-completion support is enabled by default. (defaults to "false").
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="uri" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Sets the URI of the data import handler in solr. The URI is relative to the Solr base-url.
+                        (Example: /dataimport)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -1,0 +1,162 @@
+/*
+ * Copyright 2011 SearchWorkings.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* HitsPanel */
+
+.ResultsPane .HitsPanel {
+    padding-left: 3px;
+}
+
+.ResultsPane .HitsPanel .HitBox {
+    margin-bottom: 20px;
+}
+
+.ResultsPane .HitsPanel .HitBox .HitTitle {
+    font-size: 14px;
+    color: blue;
+    text-decoration: underline;
+}
+
+.ResultsPane .HitsPanel .HitBox .HitDescription {
+    margin-left: 2px;
+}
+
+.ResultsPane .HitsPanel .HitBox .CollapseLabelText {
+    display: inline;
+}
+
+.ResultsPane .HitsPanel .HitBox .CollapseLabelLink {
+    display: inline;
+    margin-left: 4px;
+    color: #8fbeed;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.ResultsPane .HitsPanel .HitBox .HitThumbnail {
+    float: left;
+    margin-right: 5px;
+}
+
+.ResultsPane .HitsPanel .HitBox .Toolbar {
+    margin-left: 2px;
+}
+
+.ResultsPane .HitsPanel .HitBox .Toolbar .HitUrl {
+    color: green;
+    cursor: pointer;
+}
+
+.ResultsPane .HitsPanel .HitBox .Toolbar .ToolbarLink {
+    color: #8fbeed;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ResultsPane .HitsPanel .HitBox .FieldsPanel {
+    /*background-color: #f2f7fc;*/
+    padding: 2px;
+}
+
+.ResultsPane .HitsPanel .HitBox .FieldsPanel .NameLabel {
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 2px;
+}
+
+.ResultsPane .HitsPanel .HitBox .FieldsPanel .NameLabel {
+    font-size: 12px;
+}
+
+
+/* NavigationBar */
+
+.ResultsPane .NavigationBar {
+    padding: 4px;
+}
+
+.ResultsPane .NavigationBar .PrevButton {
+    padding: 2px;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    color: blue;
+}
+
+.ResultsPane .NavigationBar .PrevButton-hover {
+    text-decoration: underline !important;
+    font-weight: bold;
+}
+
+.ResultsPane .NavigationBar .PrevButton-disabled {
+    cursor: default !important;
+    color: gray !important;
+}
+
+.ResultsPane .NavigationBar .NextButton {
+    padding: 2px;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    color: blue;
+}
+
+.ResultsPane .NavigationBar .NextButton-hover {
+    text-decoration: underline !important;
+    font-weight: bold;
+}
+
+.ResultsPane .NavigationBar .NextButton-disabled {
+    cursor: default !important;
+    color: gray !important;
+}
+
+.ResultsPane .NavigationBar .PageNumber {
+    padding: 2px;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    color: blue;
+}
+
+.ResultsPane .NavigationBar .PageNumber-hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.ResultsPane .NavigationBar .PageNumber-current {
+    padding: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ff6600;
+    cursor: default;
+}
+
+.ResultsPane .NavigationBar .PageNumber-current-hover {
+/*text-decoration: none;*/
+}
+
+.ResultsPane .NavigationBar .NavigationLogoLeft {
+    background: transparent url(images/listview/solr-s.gif) no-repeat scroll right 0;
+}
+
+.ResultsPane .NavigationBar .NavigationLogoRight {
+    background: transparent url(images/listview/solr-lr.gif) no-repeat scroll 0 0;
+}
+
+.ResultsPane .NavigationBar .NavigationLogoPageNumber {
+    background: transparent url(images/listview/solr-o.gif) no-repeat scroll 0 0;
+}

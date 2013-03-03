@@ -1,0 +1,384 @@
+/*
+ * Copyright 2011 SearchWorkings.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.form-table td {
+    padding-bottom: 10px;
+}
+
+.form-table .label-cell {
+    text-align: right;
+}
+
+.form-table .field-cell {
+    padding-left: 10px;
+}
+
+.form-table td {
+}
+
+.link {
+    color: #FF4400;
+    cursor: pointer;
+}
+
+.floating-box {
+    border: 1px solid blue;
+    float: right;
+}
+
+.floating-right {
+    float: right;
+}
+
+.floating-left {
+    float: left;
+}
+
+.PropertiesTableNameCell {
+    background-color: #e9e8e8;
+}
+
+.inline {
+    display: inline;
+}
+
+
+/*============================================ Application specific styles ===========================================*/
+
+.URLDebugPanel {
+
+}
+
+.URLDebugPanel .URLLabel {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 18px;
+}
+
+
+.URLDebugPanel .ParametersTabs .ParameterRow {
+    padding-left: 3px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
+
+.URLDebugPanel .ParametersTabs .ParameterRow .NameLabel {
+    margin-right: 5px;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.URLDebugPanel .ParametersTabs .ParameterRow .EqualsLabel {
+    margin-right: 5px;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.URLDebugPanel .ParametersTabs .ParameterRow .ValueLabel {
+    text-align: left;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.URLDebugPanel .ParametersTabs .ParameterRow-odd {
+    padding-left: 3px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    vertical-align: middle;
+    background-color: #dedddd;
+}
+
+.MessageDialogContent {
+    padding: 5px;
+}
+
+.MessageDialogContent .Message {
+    vertical-align: middle;
+}
+
+.MessageDialogContent .Icon {
+    margin-right: 5px;
+}
+
+.tool-button {
+    cursor: pointer;
+}
+
+input {
+    padding: 0;
+    margin: 0;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+
+/*=============================================  Progress Indicator Styels ===========================================*/
+
+.DefaultProgressIndicator {
+    padding: 3px 5px;
+    background-color: #ffff99;
+}
+
+.DefaultProgressIndicator .Label {
+    color: blue;
+}
+
+.WidgetProgressIndicator {
+    background-color: #000000;
+}
+
+.WidgetProgressIndicator .Label {
+    color: white;
+}
+
+/*
+ * Panes styles.
+ */
+
+.SearchPane {
+    background: transparent url(images/sw-explorer-logo.png) no-repeat 5px center;
+}
+
+.SearchPane .SearchBox {
+    width: 250px;
+}
+
+.SearchPane .DropDownBox {
+    border: 1px solid #ABA799;
+}
+
+.SearchPane .CoresSelectionPanel {
+    margin-top: 2px;
+    margin-right: 3px;
+}
+
+.SearchPane .FiltersLabel {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.SearchPane .Filter {
+    font-weight: bold;
+    color: #00a8ff;
+    cursor: pointer;
+}
+
+.SearchPane .Filter-hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.StatusBarPane {
+    padding-top: 3px;
+    padding-left: 25px;
+}
+
+.StatusBarPane .Buttons {
+    float: right;
+    margin-top: -3px;
+}
+
+
+/*=================================================  ResultPane Styels ===============================================*/
+
+.ResultsPane {
+    padding: 0;
+    margin: 0;
+}
+
+/* HeaderBar */
+
+.ResultsPane .HeaderBar {
+    font-weight: bold;
+    border-bottom: 1px solid #ABA799;
+    background: silver url(../explorer/gwtoolbox/images/cp-bg.png) repeat-x center 0;
+    padding-right: 3px;
+}
+
+.ResultsPane .HeaderBar .InfoLabel {
+    font-weight: normal;
+    float: right;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+
+.ResultsPane .HeaderBar .SortToolBar {
+    margin-left: 5px;
+    clear: none;
+}
+
+.ResultsPane .HeaderBar .SortButton {
+    cursor: pointer;
+    margin-right: 6px;
+    float: left;
+    margin-top: 4px;
+}
+
+.ResultsPane .HeaderBar .SortButton .Label {
+    margin-right: 2px;
+    color: gray;
+    font-size: 12px;
+}
+
+.ResultsPane .HeaderBar .SortButton .Label-on {
+    margin-right: 2px;
+    color: black;
+}
+
+.ResultsPane .HeaderBar .SortButton .Icon {
+
+}
+
+.ResultsPane .HeaderBar .MenuButton {
+    margin-right: 2px;
+}
+
+.ResultsPane .VerticalComponent {
+    background: #ECEBE8 url(gwtoolbox/images/tabs/tabs-bg.png) repeat-x scroll center 0;
+}
+
+.UrlLabel {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.ParametersPanel {
+    padding: 4px;
+}
+
+
+/*=================================================  DrawerPane Styels ===============================================*/
+
+/*.DrawerPane {*/
+    /*border-top: 1px solid #ABA799;*/
+/*}*/
+
+/*.DrawerPane .Content {*/
+    /*border-left: 1px solid #00a8ff;*/
+    /*border-right: 1px solid #00a8ff;*/
+/*}*/
+
+/*.DrawerPane .SimpleHorizontalSplitPanel .splitter {*/
+    /*cursor: move;*/
+    /*background: #d9ebfc;*/
+    /*border-top: none;*/
+    /*border-bottom: none;*/
+    /*border-left: 1px solid #90c8ff;*/
+    /*border-right:1px solid #90c8ff;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter {*/
+    /*border-right: 1px solid #ABA799;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons {*/
+    /*border-right: 1px solid gray;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton {*/
+    /*margin: 1px;*/
+    /*background-color: silver;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.DrawerPane .LeftGutter .Buttons .DrawerButton-down {*/
+/*}*/
+
+
+/*==================================================  DebugPane Styels ===============================================*/
+
+.ConsolePane {
+}
+
+.ConsolePane .LogPane {
+    background-color: white !important;
+}
+
+.ConsolePane .LogPane .LogEntries {
+    /*border: 1px gray ridge;*/
+}
+
+.ConsolePane .SchemaPane {
+    background-color: white !important;
+}
+
+.ConsolePane .SearchContextPane {
+    background-color: white !important;
+}
+
+.ConsolePane .SearchContextPane .gwt-DisclosurePanel .content {
+    background-color: white !important;
+}
+
+.ConsolePane .URLParametersPane {
+    background-color: white !important;
+}
+
+
+/*====================================================  About Dialog =================================================*/
+
+.AboutDialog {
+    margin: 10px;
+}
+
+.AboutDialog .AboutTab {
+    padding: 20px;
+    background: transparent url(images/sw-logo-notext-big-alpha.png) no-repeat center;
+}
+
+.AboutDialog .InfoTab-Header {
+    font-size: 30;
+    font-weight: bold;
+}
+
+.AboutDialog .InfoTab-Version {
+    margin-bottom: 15px;
+    font-size: 15
+}
+
+.AboutDialog .InfoTab-Text {
+    line-height: 1.3
+}
+
+.AboutDialog .LicenseTab-Text {
+    line-height: 1.3
+}
+
+.AboutDialog .DialogCaption {
+    padding-left: 28px;
+    background: transparent url(images/sw-logo-notext-12.png) no-repeat 0 0;
+}
+
+.XmlViewPane .tagName {
+    color: #00008b;
+}
+
+.XmlViewPane .attrName {
+    color: blue;
+}
+
+.XmlViewPane .attrValue {
+    color: #006400;
+}
+
+.XmlViewPane .gwt-DisclosurePanel .content {
+    border-left: none !important;
+    margin-left: 0 !important;
+    padding: 0;
+}

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 SearchWorkings.org
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:tns="http://lucene.apache.org/solr/schema/solr/explorer-1.0"
+           elementFormDefault="qualified"
+           targetNamespace="http://lucene.apache.org/solr/schema/solr/explorer-1.0">
+
+    <xs:include schemaLocation="dih.xsd"/>
+    <xs:include schemaLocation="debug.xsd"/>
+    <xs:include schemaLocation="facet.xsd"/>
+    <xs:include schemaLocation="highlight.xsd"/>
+    <xs:include schemaLocation="list-view.xsd"/>
+    <xs:include schemaLocation="spellcheck.xsd"/>
+    <xs:include schemaLocation="terms.xsd"/>
+    <xs:include schemaLocation="params.xsd"/>
+
+    <!-- Basic Structure Element Definitions -->
+
+    <xs:element name="solr-explorer">
+        <xs:annotation>
+            <xs:documentation>
+                The root element of the solr-explorer configuration.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="help-url" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:solr-core" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="solr-core">
+        <xs:annotation>
+            <xs:documentation>
+                Configuration for a specific solr core.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:properties" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:debug" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:server" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="tns:search" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:list-view" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="tns:sorting" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:terms" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:dih" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:spellcheck" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:highlighting" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="tns:facets" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The disply name of the core
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="properties">
+        <xs:annotation>
+            <xs:documentation>
+                Configures general properties that can be used as general configuration.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="property" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            A string name-value pair
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="name" type="xs:string" use="required">
+                                    <xs:annotation>
+                                        <xs:documentation>
+                                            The name of the property
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="server">
+        <xs:annotation>
+            <xs:documentation>
+                Configures the URL's of the server
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="select-uri" type="xs:string" minOccurs="0" maxOccurs="1" default="/select">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The URI to send search request to. This is name configured for the search request handler
+                            in the solrconfig.xml file. (by default: "/select" )
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="luke-uri" type="xs:string" minOccurs="0" maxOccurs="1" default="/admin/luke">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The URI for the LukeRequestHandler as configured in the solrconfig.xml file.
+                            (by default: "/admin/luke" )
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="baseUrl" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The base url of the server (typically in the form: "http://domain:port/solr" )
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="connectionTimout" type="xs:int" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Sets the connection timeout for this server
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="search">
+        <xs:annotation>
+            <xs:documentation>
+                Configures default general settings related to search
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="default-query" type="xs:string" minOccurs="0" maxOccurs="1" default="*:*">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The query to be executed when the search field is empty (by default: *:*).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="page-size" type="xs:string" minOccurs="0" maxOccurs="1" default="10">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The number of search result shown per page.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="use-q.alt" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Indicates whether a q.alt should be used (with a value of *:*) for the default empty search.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sorting">
+        <xs:annotation>
+            <xs:documentation>
+                Configures the default sorting settings.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sortable-fields" type="xs:string" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            A comma-separated list of sortable fields
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="sort-buttons" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Configures which sort buttons should apear by default.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="sort-button" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="name" type="xs:string" use="required">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                The display name of the button
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="fieldName" type="xs:string" use="required">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                The name of the field this button will sort on
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

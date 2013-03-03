@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2011 SearchWorkings.org
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:tns="http://lucene.apache.org/solr/schema/solr/explorer-1.0"
+           elementFormDefault="qualified"
+           targetNamespace="http://lucene.apache.org/solr/schema/solr/explorer-1.0">
+
+    <xs:element name="list-view">
+            <xs:annotation>
+                <xs:documentation>
+                    Configures the fields that will be used to render each search hit.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="title-field" minOccurs="1" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The field whose value will be used as the hit title.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="default" type="xs:string" use="required">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                The default value that will be used for the title when not available.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="summary-field" minOccurs="1" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The field whose value will be used as the hit summary.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="default" type="xs:string" use="required">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                The default value that will be used for the summary when not available.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maxLength" type="xs:int" use="optional">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                Specifies the maximum lenth (in character count) of the summary that should
+                                                be displayed.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="url-field" type="xs:string" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The field whose value will be used as the hit URL. (This is optional)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="show-fields" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Defines which fields to show in the field details panel.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="include" type="xs:string" minOccurs="0" maxOccurs="1">
+                                    <xs:annotation>
+                                        <xs:documentation>
+                                            Defines which fields to inclued in the field details panel
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="exclude" type="xs:string" minOccurs="0" maxOccurs="1">
+                                    <xs:annotation>
+                                        <xs:documentation>
+                                            Defines which fields not to inclued in the field details panel
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="thumbnail" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Configures the thumbnail of the hit if one exists.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="url-template" type="xs:string" minOccurs="1" maxOccurs="1">
+                                    <xs:annotation>
+                                        <xs:documentation>
+                                            A template string to represent the URL for the thumbnail. The template can contain
+                                            placeholders for fields.
+
+                                            For exaple:
+
+                                            http://domainname.com/images/${id}.jpg
+
+                                            In the template above the ${id} placeholder will be replaced by the "id" field of
+                                            the hit.
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="width" type="xs:string" use="required">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Sets the CSS width of the thumbnail (e.g. 70px)
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:attribute>
+                            <xs:attribute name="height" type="xs:string" use="required">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Sets the CSS height of the thumbnail (e.g. 70px)
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:attribute>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="details-html" minOccurs="0" maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Use this element to set extra details you'd like to associate with the hit. The content
+                                of this element can be HTML template text with placeholders that will be replaced with
+                                the values of the returned fields.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="caption" type="xs:string" >
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                The caption of the button/link that will be used to show this html snippet.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    
+
+</xs:schema>
